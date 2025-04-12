@@ -1,0 +1,23 @@
+name: CI/CD Pipeline
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  vue-deploy:
+    name: 部署Vue到GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: 安装依赖
+      working-directory: app
+      run: npm install
+    - name: 构建项目
+      working-directory: app
+      run: npm run build
+    - uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: app/dist
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }} 
