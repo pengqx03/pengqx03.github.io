@@ -21,3 +21,4 @@ jobs:
         branch: gh-pages
         folder: app/dist
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }} 
+        
